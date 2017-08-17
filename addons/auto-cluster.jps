@@ -28,8 +28,7 @@
     {
       "cmd[${nodes.nosqldb.first.id}]": [
         "couchbase-cli cluster-init -c 127.0.0.1:8091 --cluster-username=${globals.user} --cluster-password=${globals.pswd} --cluster-ramsize=${globals.data-ram} --cluster-index-ramsize=${globals.index-ram} --cluster-fts-ramsize=${globals.fts-ram} --index-storage-setting=memopt --services=data,index,query,fts"
-      ],
-      "user": "root"
+      ]
     },
     {
       "forEach(env.nodes)": {
@@ -70,8 +69,7 @@
       "cmd[${this.id}]": [
         "couchbase-cli server-add -c ${nodes.nosqldb.first.address}:8091 -u ${globals.user} -p ${globals.pswd} --server-add=${this.address}:8091 --server-add-username=${globals.user} --server-add-password=${globals.pswd} --services=data,index,query,fts",
         "iptables -t nat -I PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8091 && iptables-save > /etc/iptables.rules"
-      ],
-      "user": "root"
+      ]
     },
     "remove-node": {
       "cmd[${nodes.nosqldb.first.id}]": "couchbase-cli rebalance -c ${nodes.nosqldb.first.address}:8091 -u ${globals.user} -p ${globals.pswd} --server-remove=${this.address}"
