@@ -27,7 +27,7 @@
     },
     {
       "cmd[${nodes.nosqldb.first.id}]": [
-        "couchbase-cli cluster-init -c 127.0.0.1:8091 --cluster-username=${globals.user} --cluster-password=${globals.pswd} --cluster-ramsize=${globals.data-ram} --cluster-index-ramsize=${globals.index-ram} --cluster-fts-ramsize=${globals.fts-ram} --index-storage-setting=memopt --services=data,index,query,fts"
+        "sudo service couchbase start &>/dev/null; couchbase-cli cluster-init -c 127.0.0.1:8091 --cluster-username=${globals.user} --cluster-password=${globals.pswd} --cluster-ramsize=${globals.data-ram} --cluster-index-ramsize=${globals.index-ram} --cluster-fts-ramsize=${globals.fts-ram} --index-storage-setting=memopt --services=data,index,query,fts"
       ]
     },
     {
